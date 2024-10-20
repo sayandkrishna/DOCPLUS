@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Disease Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #f9fafb;  /* Light background color */
+            font-family: 'Roboto', sans-serif;
+        }
+        .header-logo {
+            height: 40px;  /* Adjust the size of your logo */
+            margin-right: 10px;  /* Space between logo and title */
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-button {
+            background-color: #4285f4;  /* Google blue */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        .login-button:hover {
+            background-color: #357ae8;  /* Darker blue on hover */
+        }
+    </style>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js"></script>
+</head>
+<body>
+    <header class="flex items-center justify-between p-4 shadow-md">
+        <div class="flex items-center">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="header-logo">  <!-- Logo path -->
+            <h1 class="text-xl font-bold">Disease Detection</h1>
+        </div>
+    </header>
+
+    <main class="flex items-center justify-center h-screen">
+        <div class="card max-w-md w-full">
+            <h2 class="text-2xl font-bold text-center mb-4">Login</h2>
+            <button id="googleLoginButton" class="login-button">
+                <i class="fab fa-google"></i> Login with Google
+            </button>
+            <p id="status" class="text-center mt-4 text-red-500"></p>
+        </div>
+    </main>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB9MCyj0EOBhQvh8rFNsGisKBrnIVn-oi8",
+            authDomain: "diseasedetection-571e5.firebaseapp.com",
+            projectId: "diseasedetection-571e5",
+            storageBucket: "diseasedetection-571e5.appspot.com",
+            messagingSenderId: "174619511220",
+            appId: "1:174619511220:web:f3c884c955df400a058ae1",
+            measurementId: "G-BJJZ8VRC5M"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Google Login
+        document.getElementById('googleLoginButton').addEventListener('click', function() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    console.log('User logged in:', user);
+                    // Redirect to main application page or update UI
+                    window.location.href = "/"; // Redirect to home page
+                })
+                .catch((error) => {
+                    console.error('Error during login:', error);
+                    document.getElementById('status').innerText = 'Login failed: ' + error.message;
+                });
+        });
+    </script>
+</body>
+</html>
