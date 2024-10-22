@@ -33,7 +33,7 @@ class BaselineCNN(torch.nn.Module):
 @st.cache_resource()
 def load_model():
     model = BaselineCNN()
-    model.load_state_dict(torch.load("../models/alzheimers_model.pth", map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load("models/alzheimers_model.pth", map_location=torch.device('cpu')))
     model.eval()
     return model
 
