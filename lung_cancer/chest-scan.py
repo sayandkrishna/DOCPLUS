@@ -19,7 +19,7 @@ try:
         torch.nn.Linear(256, 4)  # 4 output classes (adjust if necessary)
     )
     model.load_state_dict(
-        torch.load("../models/chest-ctscan_model.pth", map_location=torch.device(device)))  # Load model weights
+        torch.load("models/chest-ctscan_model.pth", map_location=torch.device(device)))  # Load model weights
     model = model.to(device)
     model.eval()  # Set model to evaluation mode
 except Exception as e:
