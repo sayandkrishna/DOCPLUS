@@ -99,6 +99,17 @@
                     </a>
                 </div>
             </div>
+            <div class="relative w-64 h-96 bg-gray-200 rounded-lg overflow-hidden card-image-container">
+                <img alt="Information about Chest Scan" class="w-full h-full object-cover" src="{{ url_for('static', filename='images/chest_scan_image.jpg') }}"/>
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <h3 class="text-xl font-medium">Chest Scan Detection</h3>
+                    <p class="text-sm">Detect abnormalities in CT scans</p>
+                    <a href="{{ url_for('chest_scan') }}">
+                        <button class="mt-10 px-4 py-2 border border-white text-white rounded detect-button">Detect Now</button>
+                    </a>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -114,7 +125,7 @@
     </div>
 
     <script>
-
+        // Add your JavaScript for handling login popup here
     </script>
 </body>
 </html>
