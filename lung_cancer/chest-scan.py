@@ -41,7 +41,7 @@ inference_transform = transforms.Compose([
 ])
 
 # Create the Streamlit app
-st.title("CT Scan Classification")
+st.title("Lung Cancer CT Scan Classification")
 st.write("Upload a CT scan image for classification.")
 
 # File uploader
